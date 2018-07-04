@@ -8,5 +8,6 @@ Every character has HP, so you can win the game by defeating all of your enemies
 
 - Built with Javascript, JQuery, HTML, CSS, and Bootstrap.
 - Author: Vishnu Swaminathan
+
   **Date:07/04/18:** *This is still a work in progress, as of now the character selection works, enemy selection works, and attack button functions.*
   _Issues remaining are proper attack/hp reflections, moving onto other enemies, and image-deletion after defeating enemy._
