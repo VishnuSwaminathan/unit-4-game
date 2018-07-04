@@ -44,6 +44,7 @@ $(document).ready(function() {
   function setHero(hero) {
     hero.att = Math.floor(Math.random() * 5 + 5);
     hero.base = hero.att;
+    console.log('Hero base att ' + hero.base);
     console.log('Hero att ' + hero.att);
     hero.hp = Math.floor(Math.random() * 75 + 100);
     console.log('Hero hp ' + hero.hp);
@@ -58,17 +59,15 @@ $(document).ready(function() {
     console.log('Enemy ' + enemy.selectedID + ' is defender');
   }
   function attackEnemy(hero, enemy1) {
-    enemy1.hp = enemy1.hp - hero.att;
-    console.log('You dealt ' + hero.att + 'damage to ' + enemy1.selectedID);
-    hero.att = hero.base + hero.att;
-    if (enemy1.hp === 0 || enemy1.hp < 0) {
-      console.log('Enemy Defeated');
-      console.log(hero.att);
-      return 1;
-    } else {
+    while (enemy1.hp !== 0 && enemy1.hp > 0) {
+      enemy1.hp = enemy1.hp - hero.att;
+      console.log('You dealt ' + hero.att + 'damage to ' + enemy1.selectedID);
+      hero.att = hero.base + hero.att;
       hero.hp = hero.hp - enemy1.catt;
       console.log('You took ' + enemy1.catt + ' damage');
     }
+    console.log('Enemy Defeated');
+    console.log(hero.att);
   }
 
   $('.btn').on('click', function() {
@@ -82,16 +81,18 @@ $(document).ready(function() {
         setEnemies(charD);
       }
       $('.btn').on('click', function() {
-        if (charB.selectedID == $(this).attr('id')) {
-          console.log('Selected ' + heroSelected.selectedID);
-          $('btn').on('click', function() {
+        if (
+          charB.selectedID == $(this).attr('id') ||
+          charC.selectedID == $(this).attr('id') ||
+          charD.selectedID == $(this).attr('id')
+        ) {
+          console.log('Selected ' + $(this).attr('id') + ' as enemy');
+          $('#attack').on('click', function() {
             console.log($(this).attr('id'));
-            if ('attack' == $(this).attr('id'))
-              while (attackEnemy(heroSelected, charB) !== 1) {
-                j = 0;
-                console.log(j);
-                j++;
-              }
+            if ('attack' == $(this).attr('id')) {
+              attackEnemy(heroSelected, charB);
+              $('#Wild').html('');
+            }
           });
         }
       });
@@ -104,6 +105,22 @@ $(document).ready(function() {
         setEnemies(charC);
         setEnemies(charD);
       }
+      $('.btn').on('click', function() {
+        if (
+          charB.selectedID == $(this).attr('id') ||
+          charC.selectedID == $(this).attr('id') ||
+          charD.selectedID == $(this).attr('id')
+        ) {
+          console.log('Selected ' + $(this).attr('id') + ' as enemy');
+          $('#attack').on('click', function() {
+            console.log($(this).attr('id'));
+            if ('attack' == $(this).attr('id')) {
+              attackEnemy(heroSelected, charC);
+              $('#Triss').html('');
+            }
+          });
+        }
+      });
     } else if (charC.selectedID == $(this).attr('id')) {
       heroSelected = charC;
       if (charC.defender == 0) {
@@ -113,6 +130,22 @@ $(document).ready(function() {
         setEnemies(charB);
         setEnemies(charD);
       }
+      $('.btn').on('click', function() {
+        if (
+          charB.selectedID == $(this).attr('id') ||
+          charC.selectedID == $(this).attr('id') ||
+          charD.selectedID == $(this).attr('id')
+        ) {
+          console.log('Selected ' + $(this).attr('id') + ' as enemy');
+          $('#attack').on('click', function() {
+            console.log($(this).attr('id'));
+            if ('attack' == $(this).attr('id')) {
+              attackEnemy(heroSelected, charD);
+              $('#King').html('');
+            }
+          });
+        }
+      });
     } else if (charD.selectedID == $(this).attr('id')) {
       heroSelected = charD;
       if (charA.defender == 0) {
@@ -122,26 +155,22 @@ $(document).ready(function() {
         setEnemies(charB);
         setEnemies(charC);
       }
+      $('.btn').on('click', function() {
+        if (
+          charB.selectedID == $(this).attr('id') ||
+          charC.selectedID == $(this).attr('id') ||
+          charD.selectedID == $(this).attr('id')
+        ) {
+          console.log('Selected ' + $(this).attr('id') + ' as enemy');
+          $('#attack').on('click', function() {
+            console.log($(this).attr('id'));
+            if ('attack' == $(this).attr('id')) {
+              attackEnemy(heroSelected, charA);
+              $('#Geralt').html('');
+            }
+          });
+        }
+      });
     }
   });
-
-  // if (hero.hasOwnProperty('selectedID')) {
-  //   console.log('hero selected ID created');
-  //   $('.btn').on('click', function() {
-  //     if (charA == $(this).attr('id')) {
-  //       var i = 1;
-  //     } else if (charB == $(this).attr('id')) {
-  //       var i = 2;
-  //       console.log(i);
-  //     } else if (charC == $(this).attr('id')) {
-  //       var i = 1;
-  //     } else if (charD == $(this).attr('id')) {
-  //       var i = 1;
-  //     } else if ('reset' == $(this).attr('id')) {
-  //       var i = 'reset';
-  //     }
-  //   });
-  // }
-  //  attackEnemy(a, b);
-  // console.log(charA.selectedID);
 });
