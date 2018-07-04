@@ -29,6 +29,7 @@ $(document).ready(function() {
   };
   var heroSelected = {
     att: 0,
+    base: 0,
     hp: 50,
     catt: 0,
     defender: 0
@@ -42,6 +43,7 @@ $(document).ready(function() {
 
   function setHero(hero) {
     hero.att = Math.floor(Math.random() * 5 + 5);
+    hero.base = hero.att;
     console.log('Hero att ' + hero.att);
     hero.hp = Math.floor(Math.random() * 75 + 100);
     console.log('Hero hp ' + hero.hp);
@@ -55,13 +57,16 @@ $(document).ready(function() {
     enemy.defender = 2;
     console.log('Enemy ' + enemy.selectedID + ' is defender');
   }
-  function attackEnemy(hero, enemy) {
-    enemy.hp = enemy.hp - hero.att;
-    if (enemy.hp === 0 || enemy.hp < 0) {
+  function attackEnemy(hero, enemy1) {
+    enemy1.hp = enemy1.hp - hero.att;
+    console.log('You dealt ' + hero.att + 'damage to ' + enemy1.selectedID);
+    hero.att = hero.base + hero.att;
+    if (enemy1.hp === 0 || enemy1.hp < 0) {
       console.log('Enemy Defeated');
+      return 1;
     } else {
-      hero.hp = hero.hp - enemy.catt;
-      console.log('You took ' + enemy.catt + ' damage');
+      hero.hp = hero.hp - enemy1.catt;
+      console.log('You took ' + enemy1.catt + ' damage');
     }
   }
 
@@ -75,6 +80,12 @@ $(document).ready(function() {
         setEnemies(charC);
         setEnemies(charD);
       }
+      $('.btn').on('click', function() {
+        if (charB.selectedID == $(this).attr('id')) {
+          console.log('Selected ' + heroSelected.selectedID);
+          $('');
+        }
+      });
     } else if (charB.selectedID == $(this).attr('id')) {
       heroSelected = charB;
       if (charB.defender == 0) {
@@ -105,52 +116,23 @@ $(document).ready(function() {
     }
   });
 
-  $('.btn').on('click', function() {
-    if (charA == $(this).attr('id')) {
-    } else if (charA == $(this).attr('id')) {
-    } else if (charA == $(this).attr('id')) {
-    } else if (charA == $(this).attr('id')) {
-    } else if (charA == $(this).attr('id')) {
-    }
-  });
+  if (hero.hasOwnProperty('selectedID')) {
+    console.log('hero selected ID created');
+    $('.btn').on('click', function() {
+      if (charA == $(this).attr('id')) {
+        var i = 1;
+      } else if (charB == $(this).attr('id')) {
+        var i = 2;
+        console.log(i);
+      } else if (charC == $(this).attr('id')) {
+        var i = 1;
+      } else if (charD == $(this).attr('id')) {
+        var i = 1;
+      } else if ('reset' == $(this).attr('id')) {
+        var i = 'reset';
+      }
+    });
+  }
   //  attackEnemy(a, b);
   // console.log(charA.selectedID);
-
-  // -------------------------------------------------------------------------------------------------------------------------------------
-  // VARIABLES (FOR BOTH): HP, ATTACK POWER, COUNTER ATTACK POWER, DEFENDER (BOOLEAN), MUSIC, RESET
-  // (ON) CLICK HERO PICTURE, HIDE/LOCK/DELETE OTHER HERO PICTURES
-  // FOR LOOP FOR 3 TURNS (1 FOR EACH ENEMY)
-  // (ON) CLICK 1ST ENEMY PICTURE, POPULATE "DEFENDER AREA" WITH ENEMY PICTURE, REPLACE WITH PLACEHOLDER IMAGE ON SAME POSITION
-  // CLICK "ATTACK" BUTTON, CHECK ATTACK POWER, SUBTRACT FROM ENEMY HP, REFLECT NEW HP
-  // CHECK 1ST ENEMY COUNTER ATTACK POWER, SUBTRACT FROM HERO HP, REFLECT NEW HP
-  // INCREASE HERO ATTACK POWER BY n
-  //IF 1ST ENEMY HP === 0, DELETE ENEMY PICTURE IN "DEFENDER AREA", CHECK IF "AREA" CLEAR
-  // (ON) CLICK 2ND EMENY PICTURE, ETC...3RD ENEMY PICTURE, ETC...
-  // IF HERO HP === 0, DISPLAY "YOU LOOSE"
-  // --------------------------------------------------------------------------------------------------------------------------
-
-  // --------------------------------------------------------------------------------------------------------------------------
-  // HERO_HP > , HERO_ATTACK = (n)!/(n-k)!, WHERE t IS NUMBER OF TIMES TO ATTACK, AND n IS BASE ATTACK POWER
-  // HP = A*T1 + B*T2 + C*T3, WHERE T IS # OF TIMES TO GET HP->0
-  // (n)!/(n-k)! = A + B + C (ENEMY HP's)
-
-  // 100 = 10x + 20x + 30x
-  // n!/(n-k)! = 50 + 60 +70 = 180
-  //
-  // !!!!!LOOK UP PERMUATION!!!!!!
-  //
-  // --------------------------------------------------------------------------------------------------------------------------
-  // EX:
-  // HERO: 50HP, 5ATT -----> 10HP 10ATT, 20HP 15ATT, 30HP 20ATT
-  // 1) 6 turns total (t), if 10(A) + 20(B) + 30(C) and ATT = 5
-  // 1)a) 5 (A = 5), 10 (A = -5), 15 (B = 5), 20 (B = -15), 25 (B = 5), 30 (B = -25 )
-  // 2) BUT... 50 - 10*2 = 30 (A), 30 - 15*2 = 0 (B), 0 - 20*2 = -40 (C)
-  // EX:
-  // HERO:100HP, 7ATT ----> 15HP 12ATT, 25HP 17ATT, 35HP 22ATT
-  // 1) 5 turns total (t), if 15(A) + 25(B) + 35(C)
-  // 1)a) 7 (A = 8), 14 (A = -6), 21 (B = 4), 28 (B = -24), 35 (C = 0)
-
-  // 1) Hero's are fixed 2) Enemies are fixed
-  // if hero's are fixed, enemies are variable
-  // if
 });
