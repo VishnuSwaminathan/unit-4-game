@@ -1,0 +1,8 @@
+body {
+  background-image: url(../images/backgroundImage1.png);
+  background-repeat: space;
+  /* background-blend-mode; */
+  background-size: cover;
+  background-color: black;
+  background-position: top;
+}
