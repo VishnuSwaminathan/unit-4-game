@@ -63,6 +63,7 @@ $(document).ready(function() {
     hero.att = hero.base + hero.att;
     if (enemy1.hp === 0 || enemy1.hp < 0) {
       console.log('Enemy Defeated');
+      console.log(hero.att);
       return 1;
     } else {
       hero.hp = hero.hp - enemy1.catt;
@@ -83,7 +84,15 @@ $(document).ready(function() {
       $('.btn').on('click', function() {
         if (charB.selectedID == $(this).attr('id')) {
           console.log('Selected ' + heroSelected.selectedID);
-          $('');
+          $('btn').on('click', function() {
+            console.log($(this).attr('id'));
+            if ('attack' == $(this).attr('id'))
+              while (attackEnemy(heroSelected, charB) !== 1) {
+                j = 0;
+                console.log(j);
+                j++;
+              }
+          });
         }
       });
     } else if (charB.selectedID == $(this).attr('id')) {
@@ -116,23 +125,23 @@ $(document).ready(function() {
     }
   });
 
-  if (hero.hasOwnProperty('selectedID')) {
-    console.log('hero selected ID created');
-    $('.btn').on('click', function() {
-      if (charA == $(this).attr('id')) {
-        var i = 1;
-      } else if (charB == $(this).attr('id')) {
-        var i = 2;
-        console.log(i);
-      } else if (charC == $(this).attr('id')) {
-        var i = 1;
-      } else if (charD == $(this).attr('id')) {
-        var i = 1;
-      } else if ('reset' == $(this).attr('id')) {
-        var i = 'reset';
-      }
-    });
-  }
+  // if (hero.hasOwnProperty('selectedID')) {
+  //   console.log('hero selected ID created');
+  //   $('.btn').on('click', function() {
+  //     if (charA == $(this).attr('id')) {
+  //       var i = 1;
+  //     } else if (charB == $(this).attr('id')) {
+  //       var i = 2;
+  //       console.log(i);
+  //     } else if (charC == $(this).attr('id')) {
+  //       var i = 1;
+  //     } else if (charD == $(this).attr('id')) {
+  //       var i = 1;
+  //     } else if ('reset' == $(this).attr('id')) {
+  //       var i = 'reset';
+  //     }
+  //   });
+  // }
   //  attackEnemy(a, b);
   // console.log(charA.selectedID);
 });

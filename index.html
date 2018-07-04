@@ -17,20 +17,32 @@
 <body>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
   <script src="assets/javaScript/game.js"></script>
-  <div class="buttonOptions container container-fluid">
-    <div class="row">
-      <button class="btn btn-primary" id="Geralt of Rivia">Geralt of Rivia</button>
-      <button class="btn btn-primary" id="King of the Wild Hunt">King of the Wild Hunt</button>
-      <button class="btn btn-primary" id="Triss Merigold">Triss Merigold</button>
-      <button class="btn btn-primary" id="King Radovid">King Radovid</button>
+  <div class="buttonOptions container container-fluid row">
+    <div class="col-3">
+      <img src="assets/images/geralt.png" alt="Geralt">
+      <button class="btn btn-dark" id="Geralt of Rivia">Geralt of Rivia</button>
+    </div>
+    <div class="col-3">
+      <img src="assets/images/king-of-the-wild-hunt.png" alt="Wild Hunt">
+      <button class="btn btn-dark" id="King of the Wild Hunt">King of the Wild Hunt</button>
+    </div>
+    <div class="col-3">
+      <img src="assets/images/triss.png" alt="Triss">
+      <button class="btn btn-dark" id="Triss Merigold">Triss Merigold</button>
+    </div>
+    <div class="col-3">
+      <img src="assets/images/radovid.png" alt="King Radovid">
+      <button class="btn btn-dark" id="King Radovid">King Radovid</button>
     </div>
     <br>
-    <div class="row">
-      <button class="btn btn-primary" id="attack">Attack</button>
-      <button class="btn btn-primary" id="reset">Reset</button>
+    <br>
+    <div class="col-6">
+      <button class="btn btn-secondary" id="attack">Attack</button>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-secondary" id="reset">Reset</button>
     </div>
   </div>
-  <!-- <button class="btn btn-primary" id="music">Music</button> -->
 </body>
 
 </html>
